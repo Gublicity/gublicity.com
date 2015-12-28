@@ -102,7 +102,6 @@ body > section {
 .green-sea h1,
 .sun-flower h1,
 .orange h1,
-.emerald h1,
 .nephrits h1,
 .carrot h1,
 .pumkin h1,
@@ -621,6 +620,7 @@ body > section {
   margin: 0;
   font-size: 36px;
   font-weight: 300;
+  color : black;
 }
 .center {
   text-align: center;
