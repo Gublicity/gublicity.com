@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Gublicity.Models;
+using Gublicity.ViewModels;
+using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +10,17 @@ namespace Gublicity.Controllers.Web
 {
     public class HomeController : Controller
     {
+        private IGublicityRepository __repository;
+
+        public HomeController( IGublicityRepository repository)
+        {
+            __repository = repository;
+        }
         public IActionResult Index()
         {
+            var Administrators = __repository.getAllAdministrators();
             
-            return View();
+            return View(Administrators);
         }
 
         public IActionResult About_Us()
@@ -31,6 +40,14 @@ namespace Gublicity.Controllers.Web
 
         public IActionResult Contact_Us()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Contact_Us(ContactViewModel model)
+        {
+            var email = Startup.Configuration["AppSettings:SiteEmailAddress"];
+
             return View();
         }
 

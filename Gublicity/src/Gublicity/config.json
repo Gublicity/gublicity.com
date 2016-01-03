@@ -1,0 +1,8 @@
+{
+  "AppSetting": {
+    "SiteEmailAddress": "gublicity@gmail.com"
+  },
+  "Data": {
+    "AdministratorContextConnection": "Server=(localdb)\\ProjectsV12;Database=GublicityDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  }
+}
