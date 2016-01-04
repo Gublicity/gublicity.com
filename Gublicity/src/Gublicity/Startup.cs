@@ -10,6 +10,9 @@ using Gublicity.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using Gublicity.ViewModels;
 
 namespace Gublicity
 {
@@ -31,7 +34,11 @@ namespace Gublicity
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions( opt =>
+                {
+                    opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
 
             services.AddLogging();
 
@@ -48,6 +55,12 @@ namespace Gublicity
         public void Configure(IApplicationBuilder app, AdministratorContextSeedData seeder)
         {
             app.UseStaticFiles();
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Administrator, AdministratorViewModel>().ReverseMap();
+            });
+
             app.UseMvc(config =>
            {
                config.MapRoute(
